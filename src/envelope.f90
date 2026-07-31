@@ -251,7 +251,7 @@ subroutine ggw(vlnm,vlnl,vlnte,vm_fitm,it,p,t,r)
 
   integer:: n,i
   real(kindreal),parameter:: fitm_tol=0.001d0
-  real(kindreal):: vmms,vlls,vpsi,vsum,e,vlmg,xllEdd,ff,FITM
+  real(kindreal):: vmms,vlls,vpsi,vsum,e,vlmg,xllEdd,ff,FITM,Eddmin
 !----------------------------------------------------------------------
 ! [Modif CG]
 ! Initialisation de la variable contenant la premiere couche completement ionisee de l'enveloppe.
@@ -259,7 +259,8 @@ subroutine ggw(vlnm,vlnl,vlnte,vm_fitm,it,p,t,r)
   fitmIon = 1.d0
 ! [\Modif]
 
-  Eddmax = 5.d0
+  Eddmax = 1.d0
+  Eddmin = 0.9d0
 
   it2 = it
 ! Si it = nsix : Impression de l'atmosphere
@@ -411,6 +412,8 @@ subroutine ggw(vlnm,vlnl,vlnte,vm_fitm,it,p,t,r)
    xllEdd = 10.d0**(vll-vlm+vlka-lgqapicg)
      if (xllEdd  >  Eddmax) then
        supraEdd = .true.
+     elseif (xllEdd  <  Eddmin) then
+       supraEdd = .false.
      endif
 
    if (vmion-vmyion < 1.d-3) ionized=1

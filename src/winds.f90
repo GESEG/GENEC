@@ -136,11 +136,17 @@ subroutine xloss
 
   ! computation of the metallicity dependence log Z/Zsol = xlgfz
   xlogz_init=log10(zinit/zsol)
-  zheavy= max(1.d0-x(1)-y(1)-y3(1),1.d-10*zsol) !Floor to not go too low
+  zheavy= max(1.d0-x(1)-y(1)-y3(1),1.d-12*zsol) !Floor to not go too low
   zlim=1.d-12*zsol
-  if (zinit <= zlim) then
-    zheavy = min(zheavy,zlim)
-  endif
+
+  !NOTE:
+  !enabling these 3 lines below = Option A (BBN), 
+  !disabling them = Option B (Current universe - actual surface metallicity to estimate mass loss rate)
+
+  if (zinit <= zlim) then            !line 1
+    zheavy = min(zheavy,zlim)        !line 2
+  endif                              !line 3
+
 
   if (ipop3 == 1) then
     xlogz=log10(zheavy/zsol)
@@ -2171,7 +2177,7 @@ real(kindreal):: charrho,teffjump1,teffjump2,ratio,xlmdot
 !----------------------------------------------------------------------
   write(io_logs,*) 'Vink01 Mdot'
 ! charrho is now limited to the lowest Z in Vink01 study
-  charrho = -14.94d0+3.1857d0*eddesc+Z_dep*max(xlogz,zsol/100.d0)
+  charrho = -14.94d0+3.1857d0*eddesc+Z_dep*max(xlogz,log10/100.d0)
   teffjump1 = 61.2d0+2.59d0*charrho
   teffjump1 = teffjump1*1000.d0
   teffjump2 = 100.d0+6.d0*charrho
