@@ -2177,7 +2177,8 @@ real(kindreal):: charrho,teffjump1,teffjump2,ratio,xlmdot
 !----------------------------------------------------------------------
   write(io_logs,*) 'Vink01 Mdot'
 ! charrho is now limited to the lowest Z in Vink01 study
-  charrho = -14.94d0+3.1857d0*eddesc+Z_dep*max(xlogz,log10/100.d0)
+! charrho = -14.94d0+3.1857d0*eddesc+Z_dep*max(xlogz,zsol/100.d0)
+  charrho = -14.94d0+3.1857d0*eddesc+Z_dep*xlogz
   teffjump1 = 61.2d0+2.59d0*charrho
   teffjump1 = teffjump1*1000.d0
   teffjump2 = 100.d0+6.d0*charrho
