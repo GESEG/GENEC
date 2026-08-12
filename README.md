@@ -9,8 +9,13 @@ git tutorials can be found here:
 https://www.atlassian.com/git/tutorials/
 
 The "develop" branch (which you download with the command above) is the main development branch.
- 
-Before making any changes, please create your own branch off the development branch using this command:
+
+To get started, read and follow the main [GENEC manual](https://github.com/GESEG/GENEC/blob/release_202603/docs/GENEC.pdf). We are assembling more instructions in the [Wiki](https://github.com/GESEG/GENEC/wiki).
+
+
+For code developers only:
+
+Before making any changes, please create your own branch off the development branch using a command like this:
 
 git checkout -b feature/my_feature develop
 
