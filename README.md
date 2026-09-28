@@ -1,6 +1,8 @@
 # GENEC
 Welcome to the Geneva stellar evolution code.
 
+## Important Note: GENEC is moving to gitlab: https://gitlab.com/geseg/GENEC ! #
+
 To copy the code to your computer, run:
 
 git clone git@github.com:GESEG/GENEC.git
